@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Story+Script&display=swap" rel="stylesheet">
+    <title>CS4241 Assignment 2</title>
+    <meta charset="utf-8">
+    <script src="js/main.js" defer></script>
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- get rid of favicon error -->
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  </head>
+  <body>
+      <main class="container" id="app">
+        <section class="panel">
+          <h2 id="form-title">Add / Edit Item</h2>
+
+          <form id="todo-form">
+            <input type="hidden" id="edit-id" name="id"> </input>
+
+            <div class="field">
+              <label for="task">Task</label>
+              <input
+                id="task"
+                name="task"
+                type="text"
+                placeholder="e.g., Translate documents on DeepL"
+                required
+                maxlength="100"
+              />
+            </div>
+
+            <div class="field">
+              <label for="priority">Priority</label>
+              <select id="priority" name="priority" required>
+                <option value="">Choose…</option>
+                <option value="low">Low (set due in 7 days)</option>
+                <option value="medium">Medium (set due in 3 days)</option>
+                <option value="high">High (set due in 1 day)</option>
+              </select>
+            </div>
+
+            <div>
+              <button id="submit-btn" type="submit">Add</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel">
+          <h2 id="results-title">To-Dos</h2>
+
+          <div class="table-wrap">
+            <table class="table">
+              <caption>
+                All items returned from the server, including derived due dates.
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Task</th>
+                  <th scope="col">Priority</th>
+                  <th scope="col">Created</th>
+                  <th scope="col">Due</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="results-body">
+                <tr class="empty-row"><td colspan="5">No items yet.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <small>ToDo App for Assignment 2 — Shortstack by Batyrkhan Saparuly</small>
+      </footer>
+    </body>
+</html>
