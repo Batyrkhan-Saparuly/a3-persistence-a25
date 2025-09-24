@@ -1,12 +1,12 @@
-const form        = document.getElementById("todo-form");
+const form = document.getElementById("todo-form");
 const editIdInput = document.getElementById("edit-id");
-const taskInput   = document.getElementById("task");
+const taskInput = document.getElementById("task");
 const prioritySel = document.getElementById("priority");
-const descInput   = document.getElementById("description");
+const descInput = document.getElementById("description");
 const completedCb = document.getElementById("completed");
-const tbody       = document.getElementById("results-body");
-const submitBtn   = document.getElementById("submit-btn");
-const logoutBtn   = document.getElementById("logout-btn");
+const tbody = document.getElementById("results-body");
+const submitBtn = document.getElementById("submit-btn");
+const logoutBtn = document.getElementById("logout-btn");
 
 async function jsonFetch(url, options) {
   const res = await fetch(url, options);
