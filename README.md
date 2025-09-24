@@ -32,7 +32,7 @@ Open http://localhost:3000/ → login (new usernames auto-create accounts) → /
 
 #### Technical
 
-- **Hosted frontend on GitHub Pages.**
+- **Hosted frontend on GitHub Pages. Deployment is not working even with deployment from /docs**
 
 #### Design, 12 tips
 
