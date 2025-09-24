@@ -8,6 +8,18 @@ const tbody       = document.getElementById("results-body");
 const submitBtn   = document.getElementById("submit-btn");
 const logoutBtn   = document.getElementById("logout-btn");
 
+async function jsonFetch(url, options) {
+  const res = await fetch(url, options);
+  const ct = res.headers.get('content-type') || '';
+  if (!ct.includes('application/json')) {
+    // Likely got redirected to the login page 
+    location.href = '/';
+    throw new Error('Not authenticated');
+  }
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.json();
+}
+
 // Render
 function render(todos) {
   tbody.innerHTML = "";
@@ -50,7 +62,7 @@ function render(todos) {
 
 // Initial load -> /api/todos
 window.addEventListener("DOMContentLoaded", () => {
-  fetch("/api/todos")
+  jsonFetch("/api/todos")
     .then(r => r.json())
     .then(render)
     .catch(err => console.error("Failed to load", err));
@@ -76,7 +88,7 @@ form.addEventListener("submit", (e) => {
   const url  = id ? "/api/todos/update" : "/api/todos";
   const body = id ? { id, ...payload } : payload;
 
-  fetch(url, {
+  jsonFetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body)
@@ -100,7 +112,7 @@ tbody.addEventListener("click", (e) => {
     if (!id) return;
 
     delBtn.disabled = true;
-    fetch("/api/todos/delete", {
+    jsonFetch("/api/todos/delete", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id })

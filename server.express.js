@@ -48,7 +48,7 @@ app.use(session({
 }));
 
 // static files from /public
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), { index: false }));
 
 function requireAuth(req, res, next) {
   if (!req.session.userId) return res.redirect('/');
