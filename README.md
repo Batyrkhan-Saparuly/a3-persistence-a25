@@ -41,7 +41,7 @@ Open http://localhost:3000/ → login (new usernames auto-create accounts) → /
 - Responsive meta viewport — login page includes it. (Add to app page—see “Still to add”.) 
 - Label every form control — login form wraps inputs in <label>…<input>. App form uses <label for> + ids. 
 - Use appropriate input attributes — required, maxlength, minlength, and autocomplete are set. 
-- Semantic structure — <main class="container">, <article>, headings (<h1> on login, <h2> sections on app). 
+- Semantic structure — <main class="container">, <article>
 - Data tables with semantics — table markup + caption explaining content; thead/th are present.
 - Keyboard-usable controls — native <button> elements for Edit/Delete, so keyboard and screen readers get built-in semantics. 
 - Responsive layout — CSS grid + media query for wider screens; table wrapper enables horizontal scroll.
