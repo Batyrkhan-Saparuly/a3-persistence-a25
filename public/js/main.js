@@ -1,4 +1,3 @@
-// FRONT-END (CLIENT) JAVASCRIPT HERE
 const form        = document.getElementById("todo-form");
 const editIdInput = document.getElementById("edit-id");
 const taskInput   = document.getElementById("task");
