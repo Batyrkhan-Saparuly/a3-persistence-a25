@@ -47,8 +47,8 @@ app.use(session({
   store: MongoStore.create({ mongoUrl: MONGODB_URI, dbName: DB_NAME })
 }));
 
-// static files from /public
-app.use(express.static(path.join(__dirname, 'public'), { index: false }));
+// static files from /docs
+app.use(express.static(path.join(__dirname, 'docs'), { index: false }));
 
 function requireAuth(req, res, next) {
   if (!req.session.userId) return res.redirect('/');
@@ -58,12 +58,12 @@ function requireAuth(req, res, next) {
 // login page
 app.get('/', (req, res) => {
   if (req.session.userId) return res.redirect('/app');
-  res.sendFile(path.join(__dirname, 'public', 'login.html'));
+  res.sendFile(path.join(__dirname, 'docs', 'login.html'));
 });
 
 // main app page 
 app.get('/app', requireAuth, (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'docs', 'index.html'));
 });
 
 // auth api
