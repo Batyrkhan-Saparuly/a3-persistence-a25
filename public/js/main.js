@@ -12,12 +12,12 @@ async function jsonFetch(url, options) {
   const res = await fetch(url, options);
   const ct = res.headers.get('content-type') || '';
   if (!ct.includes('application/json')) {
-    // Likely got redirected to the login page 
+    // Likely redirected to login
     location.href = '/';
     throw new Error('Not authenticated');
   }
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  return res.json();
+  return res.json(); 
 }
 
 // Render
@@ -63,8 +63,7 @@ function render(todos) {
 // Initial load -> /api/todos
 window.addEventListener("DOMContentLoaded", () => {
   jsonFetch("/api/todos")
-    .then(r => r.json())
-    .then(render)
+    .then(render)                  
     .catch(err => console.error("Failed to load", err));
 });
 
@@ -93,8 +92,7 @@ form.addEventListener("submit", (e) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body)
   })
-  .then(r => r.json())
-  .then((todos) => {
+  .then((todos) => {              
     form.reset();
     if (editIdInput) editIdInput.value = "";
     submitBtn.textContent = "Add";
@@ -117,8 +115,7 @@ tbody.addEventListener("click", (e) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id })
     })
-    .then(r => r.json())
-    .then(render)
+    .then(render)               
     .catch(err => console.error("Delete failed", err))
     .finally(() => { delBtn.disabled = false; });
 
