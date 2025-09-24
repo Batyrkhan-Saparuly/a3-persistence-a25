@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Login — A3</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Pico.css framework -->
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.min.css">
+</head>
+<body>
+  <main class="container">
+    <article>
+      <h1>Sign in</h1>
+      <p><small>New usernames are created automatically with this password (per assignment).</small></p>
+
+      <form id="login-form">
+        <label>Username
+          <input name="username" id="username" required maxlength="64" autocomplete="username" />
+        </label>
+        <label>Password
+          <input name="password" id="password" type="password" required minlength="6" autocomplete="current-password" />
+        </label>
+        <button type="submit">Continue</button>
+      </form>
+    </article>
+  </main>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const payload = {
+        username: document.getElementById('username').value.trim(),
+        password: document.getElementById('password').value
+      };
+      const res = await fetch('/login', {
+        method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload)
+      });
+      if (res.ok) location.href = '/app';
+      else alert((await res.json().catch(()=>({error:'Login failed'}))).error || 'Login failed');
+    });
+  </script>
+</body>
+</html>
